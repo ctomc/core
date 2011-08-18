@@ -549,7 +549,6 @@
                         </execution>
                     </executions>
                 </plugin>
-
                 <!-- So m2e doesn't throw errors for features it doesn't support in the
                     POM -->
                 <plugin>
@@ -576,7 +575,15 @@
                         </lifecycleMappingMetadata>
                     </configuration>
                 </plugin>
-
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                       <source>1.6</source>
+                       <target>1.6</target>
+                    </configuration>
+                 </plugin>
             </plugins>
 
         </pluginManagement>
@@ -629,6 +636,7 @@
                 <module>tests-arquillian</module>
                 <module>inject-tck-runner</module>
                 <module>jboss-tck-runner</module>
+                <module>environments/osgi/tests</module>
             </modules>
         </profile>
         <profile>
@@ -640,6 +648,7 @@
             </activation>
             <modules>
                 <module>examples</module>
+                <module>environments/osgi/examples</module>
             </modules>
         </profile>
         <profile>
@@ -651,6 +660,7 @@
             </activation>
             <modules>
                 <module>docs/reference</module>
+                <module>environments/osgi/docs</module>
             </modules>
         </profile>
         <profile>
@@ -676,6 +686,8 @@
                 <module>environments/se/core</module>
                 <module>environments/se/build</module>
                 <module>environments/servlet</module>
+                <module>environments/osgi/build</module>
+                <module>environments/osgi/core</module>
             </modules>
         </profile>
         <profile>
@@ -729,5 +741,4 @@
             </pluginRepositories>
         </profile>
     </profiles>
-
 </project>

@@ -1,0 +1,52 @@
+<!--
+  ~ JBoss, Home of Professional Open Source
+  ~ Copyright 2012, Red Hat, Inc., and individual contributors
+  ~ by the @authors tag. See the copyright.txt in the distribution for a
+  ~ full listing of individual contributors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<configuration debug="false">
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>warn</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} %-15.-15([%-14.-14(%.-13thread])) %-5level %logger{25} - %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="Log" class="ch.qos.logback.core.FileAppender">
+        <file>weld-osgi.log</file>
+        <append>false</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>trace</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} %-15.-15([%-14.-14(%.-13thread])) %-5level %.-250(%logger{25} - %msg) %n %xEx{full}
+            </pattern>
+            <!--<pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %caller{1} %logger{25} - %msg%n %xEx{full}
+            </pattern>-->
+        </encoder>
+    </appender>
+
+    <root level="trace">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="Log"/>
+    </root>
+
+</configuration>
